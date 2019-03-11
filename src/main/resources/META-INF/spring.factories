@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.wsn.springcloud.api.security.configuration.JwtConfiguration,\
+  com.wsn.springcloud.api.security.exception.GlobalJwtExceptionHandler
