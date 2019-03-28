@@ -1,3 +1,12 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.wsn.springcloud.api.security.configuration.JwtConfiguration,\
-  com.wsn.springcloud.api.security.exception.GlobalJwtExceptionHandler
+  com.iamazy.springcloud.api.security.configuration.JwtConfiguration,\
+  com.iamazy.springcloud.api.security.exception.GlobalJwtExceptionHandler,\
+  com.iamazy.springcloud.api.security.interceptor.limiter.RateLimiterInterceptor,\
+  com.iamazy.springcloud.api.security.interceptor.lock.LockMethodInterceptor,\
+  com.iamazy.springcloud.api.security.interceptor.security.SSRFInterceptor,\
+  com.iamazy.springcloud.api.security.configuration.InternetConfiguration,\
+  com.iamazy.springcloud.api.security.configuration.lock.CacheLockConfiguration,\
+  com.iamazy.springcloud.api.security.configuration.limiter.RedisRateLimiterConfiguration,\
+  com.iamazy.springcloud.api.security.controller.TokenController,\
+  com.iamazy.springcloud.api.security.jwt.JwtManager,\
+  com.iamazy.springcloud.api.security.interceptor.JwtAuthenticationInterceptor
