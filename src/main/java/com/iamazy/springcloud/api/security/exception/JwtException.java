@@ -9,5 +9,5 @@ public class JwtException extends RuntimeException {
 
     public JwtException(String msg){super(msg);}
 
-    public JwtException(String msg,Throwable cause){super(msg,cause);}
+    public JwtException(Throwable cause){super(cause);}
 }

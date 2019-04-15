@@ -9,6 +9,7 @@ import com.iamazy.springcloud.api.security.exception.JwtException;
 import com.iamazy.springcloud.api.security.jwt.JwtUserMapper;
 import com.iamazy.springcloud.api.security.model.JwtUser;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.MalformedClaimException;
 import org.springframework.stereotype.Component;
@@ -52,14 +53,11 @@ public class JwtAuthenticationInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-
         Class<?> beanType = handlerMethod.getBeanType();
         if(beanType.isAnnotationPresent(JwtToken.class)){
             JwtToken jwtTokenAnnotation=beanType.getAnnotation(JwtToken.class);
             validateToken(jwtTokenAnnotation,token);
         }
-
-
         if(method.isAnnotationPresent(JwtToken.class)) {
             JwtToken tokenAnnotation = method.getAnnotation(JwtToken.class);
             validateToken(tokenAnnotation,token);
@@ -70,7 +68,7 @@ public class JwtAuthenticationInterceptor implements HandlerInterceptor {
 
     private void validateToken(JwtToken jwtToken,String token){
         if (jwtToken.required()) {
-            if (token == null) {
+            if (StringUtils.isNotBlank(token)) {
                 throw new JwtException("必须携带token信息，请重新发起请求!!!");
             }
             try {
@@ -86,7 +84,7 @@ public class JwtAuthenticationInterceptor implements HandlerInterceptor {
             } catch (MalformedClaimException e) {
                 throw new JwtException("解析token错误!!!");
             } catch (Throwable throwable) {
-                throw new JwtException(throwable.getMessage());
+                throw new JwtException(throwable);
             }
         }
     }

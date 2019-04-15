@@ -59,7 +59,7 @@ public class JwtManager {
         }
         claims.setStringClaim("uid",user.getUid());
         claims.setClaim("credential",user.getCredential());
-        /**
+        /*
          * token发布的时间
          */
         claims.setIssuedAtToNow();
